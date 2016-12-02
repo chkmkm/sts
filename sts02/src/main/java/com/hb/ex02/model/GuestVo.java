@@ -21,6 +21,15 @@ public class GuestVo {
 		this.pay = pay;
 	}
 
+	public boolean isCheck(){
+		
+		if(sabun==0 || name==null || "".equals(name) || pay==0){
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public int getSabun() {
 		return sabun;
 	}

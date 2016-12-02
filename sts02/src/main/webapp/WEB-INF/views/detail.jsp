@@ -7,35 +7,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>입력페이지</h1>
-	<div>${err }</div>
-	<form action="./insert">
+	<h1>상세보기</h1>
 	<table>
 		<tr>
 			<td>사번</td>
-			<td>
-				<input type="text" name="sabun" id="sabun">
-			</td>
+			<td>${bean.sabun }</td>
 		</tr>
 		<tr>
 			<td>이름</td>
-			<td>
-				<input type="text" name="name" id="name">
-			</td>
+			<td>${bean.name }</td>
+		</tr>
+		<tr>
+			<td>날짜</td>
+			<td>${bean.nalja }</td>
 		</tr>
 		<tr>
 			<td>금액</td>
-			<td>
-				<input type="text" name="pay" id="pay">
-			</td>
+			<td>${bean.pay }</td>
 		</tr>
 		<tr>
-			<td colspan="2">
-				<button type="submit">입력</button>
-				<button type="reset">취소</button>
+			<td>
+				<a href="./edit?idx=${bean.sabun }">수정</a>
+			</td>
+			<td>
+				<a href="./delete?idx=${bean.sabun }">삭제</a>
 			</td>
 		</tr>
 	</table>
-	</form>
 </body>
 </html>

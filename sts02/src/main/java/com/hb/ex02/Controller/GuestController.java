@@ -2,22 +2,24 @@ package com.hb.ex02.Controller;
 
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hb.ex02.model.GuestDao;
+import com.hb.ex02.model.GuestDaoImf;
+import com.hb.ex02.model.GuestVo;
 
 @Controller
 public class GuestController {
 	
-	private GuestDao dao;
+	Logger log = Logger.getLogger(this.getClass());
 	
 	@Autowired
-	public void setDao(GuestDao dao) {
-		this.dao = dao;
-	}
+	private GuestDaoImf dao;
 	
 	@RequestMapping("/")
 	public String selectAll(Model model){
@@ -36,8 +38,17 @@ public class GuestController {
 	}
 	
 	@RequestMapping("/insert")
-	public String insertOne(){
-		dao.insertOne();
+	public String insertOne(GuestVo bean, Model model){
+		log.debug(bean);
+			dao.insertOne(bean);
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/detail")
+	public String detailOne(@RequestParam("idx") int sabun, Model model){
+		log.debug(sabun);
+		
+		model.addAttribute("bean", dao.selectOne(sabun));
+		return "detail";
 	}
 }

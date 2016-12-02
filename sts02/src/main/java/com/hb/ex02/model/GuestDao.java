@@ -49,6 +49,30 @@ public class GuestDao {
 		return list;
 		
 	}
+
+	public void insertOne(GuestVo bean) throws SQLException {
+		
+		String sql = "insert into guest values (?,?,sysdate,?)";
+		
+		try{
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bean.getSabun());
+			pstmt.setString(2, bean.getName());
+			pstmt.setInt(3, bean.getPay());
+			pstmt.executeUpdate();
+		} finally {
+			if(pstmt!=null)pstmt.close();
+			if(conn!=null)conn.close();
+		}
+		
+		
+	}
+
+	public Object selectOne(int sabun) {
+		
+		return null;
+	}
 	
 	
 }
