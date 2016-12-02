@@ -64,7 +64,9 @@ public class GuestDaoImp implements GuestDao {
 
 	@Override
 	public void deleteOne(int sabun) {
-		// TODO Auto-generated method stub
+		String sql = "delete from guest where sabun=?";
+		Object[] obj = {sabun};
+		jdbcOperations.update(sql, obj);
 		
 	}
 
