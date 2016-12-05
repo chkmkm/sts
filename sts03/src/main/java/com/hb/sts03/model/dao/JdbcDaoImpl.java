@@ -33,7 +33,6 @@ public class JdbcDaoImpl implements GuestDao {
 	@Override
 	public List selectAll() {
 		String sql = "select * from guest";
-		
 		return jdbcOperations.query(sql, rowMapper);
 	}
 
