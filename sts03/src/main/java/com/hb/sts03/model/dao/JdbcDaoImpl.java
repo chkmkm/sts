@@ -39,26 +39,29 @@ public class JdbcDaoImpl implements GuestDao {
 
 	@Override
 	public void insertOne(GuestVo bean) {
-		// TODO Auto-generated method stub
-
+		String sql = "insert into guest values (?,?,sysdate,?)";
+		Object[] obj = {bean.getSabun(),bean.getName(),bean.getPay()};
+		jdbcOperations.update(sql, obj);
 	}
 
 	@Override
 	public GuestVo selectOne(int sabun) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from guest where sabun=?";
+		
+		return (GuestVo)jdbcOperations.queryForObject(sql, new Object[]{sabun}, rowMapper);
 	}
 
 	@Override
 	public void updateOne(GuestVo bean) {
-		// TODO Auto-generated method stub
-
+		String sql = "update guest set name=?,pay=? where sabun=?";
+		Object[] obj = {bean.getName(),bean.getPay(),bean.getSabun()};
+		jdbcOperations.update(sql, obj);
 	}
 
 	@Override
 	public void deleteOne(int sabun) {
-		// TODO Auto-generated method stub
-
+		String sql = "delete from guest where sabun=?";
+		jdbcOperations.update(sql, new Object[]{sabun});
 	}
 
 }
