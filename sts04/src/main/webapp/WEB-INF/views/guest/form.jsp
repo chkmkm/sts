@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,30 +16,6 @@
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/sts04/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-    	$(document).ready(function() {
-			$(".edit").hide();
-			$(".btnEdit").click(function() {
-				$(".detail").hide();
-				$(".edit").show(); 
-				$(".page-header").html("<h1>수정페이지</h1>");
-			});
-			
-			$(".btnDel").click(function() {
-				$.ajax("/sts04/guest/${bean.sabun }",{
-					async:false,
-					method:"DELETE",
-					error:function(){
-						alert("err");
-					},
-					success:function(data){
-						window.location.replace("/sts04/guest");
-					}
-				});
-				return false;
-			});
-		});
-    </script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -65,85 +40,57 @@
       </div>
     </nav>
 
-		<div class="jumbotron">
-		  <h1>Detail PAGE</h1>
-		  <p>guest table list</p>
-		  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-		</div>
+	<div class="jumbotron">
+	  <h1>Add PAGE</h1>
+	  <p>guest table list</p>
+	  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
 				<ol class="breadcrumb">
 				  <li><a href="/sts04/">Home</a></li>
 				  <li><a href="/sts04/guest">List</a></li>
-				  <li class="/sts04/guest/${bean.sabun }">Detail</li>
+				  <li class="/sts04/guest/${bean.sabun }">Add</li>
 				</ol>
 			</div>
 			<div class="col-xs-12">
 				<div class="page-header">
-				  <h1>상세페이지 <small>${bean.sabun }님의 정보</small></h1>
+				  <h1>입력페이지</h1>
 				</div>
 			</div>
 		</div>
-		<div class="row detail">
+		<div class="row">
 			<div class="col-xs-12">
-			<table class="table">
-				<tr>
-					<td>사번</td>
-					<td>${bean.sabun }</td>
-				</tr>
-				<tr>
-					<td>이름</td>
-					<td>${bean.name }</td>
-				</tr>
-				<tr>
-					<td>날짜</td>
-					<td>${bean.nalja }</td>
-				</tr>
-				<tr>
-					<td>금액</td>
-					<td>${bean.pay }</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<button type="button" class="btn btn-primary btnEdit"> 수정</button>
-						<a class="btn btn-danger btnDel" href="#" role="button">삭제</a>
-					</td>
-				</tr>
-			</table>
-			</div>
-		</div>
-		<div class="row edit">
-			<div class="col-xs-12">
-				<form method="post" class="form-horizontal">
-				<input type="hidden" name="_method" value="put"/>
+				<form class="form-horizontal" action="/sts04/guest" method="post">
 				  <div class="form-group">
 				    <label for="sabun" class="col-sm-1 control-label">사번</label>
 				    <div class="col-sm-11">
-				    	<input type="text" class="form-control" name="sabun" id="sabun" value="${bean.sabun }">
+				      <input type="text" class="form-control" name="sabun" id="sabun" placeholder="sabun을 입력하세요.">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label for="name" class="col-sm-1 control-label">이름</label>
 				    <div class="col-sm-11">
-				    	<input type="text" class="form-control" name="name" id="name" value="${bean.name }">
+				      <input type="text" class="form-control" name="name" id="name" placeholder="name을 입력하세요.">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label for="pay" class="col-sm-1 control-label">금액</label>
 				    <div class="col-sm-11">
-				    	<input type="text" class="form-control" name="pay" id="pay" value="${bean.pay }">
+				      <input type="text" class="form-control" name="pay" id="pay" placeholder="pay을 입력하세요.">
 				    </div>
 				  </div>
 				  <div class="form-group">
-				  	<div class="col-sm-offset-1 col-sm-11">
-				  		<button type="submit" class="btn btn-success">수정</button>
-				  		<button type="reset" class="btn btn-default">취소</button>
-				  	</div>
-				  </div>	
+				    <div class="col-sm-offset-1 col-sm-11">
+				      <button type="submit" class="btn btn-default">입력</button>
+				      <button type="reset" class="btn btn-default">취소</button>
+				    </div>
+				  </div>
 				</form>
-			</div>
+			</div>	
 		</div>
 	</div>
+
 </body>
 </html>
